@@ -1,22 +1,47 @@
-import { createBrowserRouter, Navigate } from 'react-router-dom';
-import { Home } from '@/pages/home';
+import { createBrowserRouter, type RouteObject } from 'react-router-dom';
+import nprogress from 'nprogress';
+import { LayoutRoot } from '@/components/layout';
+import { routes } from './modules';
 
-export const routes = [
-  {
-    path: '*',
-    element: (
-      <Navigate
-        to="/"
-        replace
-      />
-    ),
-  },
+nprogress.configure({
+  easing: 'ease',
+  speed: 500,
+  showSpinner: false,
+  trickleSpeed: 200,
+  minimum: 0.3,
+});
+
+const loadedPaths = new Set<string>();
+
+const rootRoute: RouteObject[] = [
   {
     path: '/',
-    element: <Home />,
+    Component: LayoutRoot,
+    children: routes,
+    loader: ({ request }) => {
+      nprogress.start();
+
+      const relativePath = new URL(request.url).pathname;
+
+      loadedPaths.add(relativePath);
+
+      return null;
+    },
+    shouldRevalidate: ({ nextUrl, currentUrl }) => {
+      if (nextUrl.pathname === currentUrl.pathname) {
+        return false;
+      }
+
+      if (!loadedPaths.has(nextUrl.pathname)) {
+        nprogress.start();
+        loadedPaths.add(nextUrl.pathname);
+      }
+
+      return false;
+    },
   },
 ];
 
-const router = createBrowserRouter(routes);
+const router = createBrowserRouter(rootRoute);
 
-export default router;
+export { nprogress, router };

@@ -3,7 +3,7 @@ import { HelloWorld } from './components/hello-world';
 import styles from './index.module.css';
 import viteLogo from '/vite.svg';
 
-export function Home() {
+export default function Home() {
   return (
     <>
       <div>
