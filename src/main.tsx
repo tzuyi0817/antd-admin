@@ -1,9 +1,9 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { App } from './App.tsx';
-
-import 'virtual:svg-icons-register';
 import { setupI18n } from '@/plugins/i18n';
+
+import { App } from './App.tsx';
+import 'virtual:svg-icons-register';
 import '@/styles/index.css';
 
 async function setupApp() {

@@ -1,1 +1,2 @@
-export { LayoutRoot } from './root';
+export * from './root';
+export * from './footer';

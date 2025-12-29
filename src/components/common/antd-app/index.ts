@@ -1,1 +1,1 @@
-export { AntdApp } from './src/index';
+export { AntdApp } from './src';

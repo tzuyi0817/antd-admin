@@ -19,8 +19,10 @@
   },
   "dependencies": {
     "@ant-design/icons": "^6.1.0",
+    "ahooks": "^3.9.6",
     "antd": "^6.1.2",
     "axios": "^1.13.2",
+    "clsx": "^2.1.1",
     "i18next": "^25.6.0",
     "motion": "^12.23.26",
     "nprogress": "^0.2.0",

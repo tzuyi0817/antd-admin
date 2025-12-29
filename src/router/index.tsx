@@ -1,5 +1,5 @@
-import { createBrowserRouter, type RouteObject } from 'react-router-dom';
 import nprogress from 'nprogress';
+import { createBrowserRouter, type RouteObject } from 'react-router-dom';
 import { LayoutRoot } from '@/components/layout';
 import { routes } from './modules';
 
@@ -27,11 +27,7 @@ const rootRoute: RouteObject[] = [
 
       return null;
     },
-    shouldRevalidate: ({ nextUrl, currentUrl }) => {
-      if (nextUrl.pathname === currentUrl.pathname) {
-        return false;
-      }
-
+    shouldRevalidate: ({ nextUrl }) => {
       if (!loadedPaths.has(nextUrl.pathname)) {
         nprogress.start();
         loadedPaths.add(nextUrl.pathname);

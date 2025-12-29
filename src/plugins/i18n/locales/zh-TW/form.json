@@ -1,0 +1,31 @@
+{
+  "required": "必填項目",
+  "length": "只支援{{length}}個字元",
+  "username": {
+    "required": "請輸入使用者名稱",
+    "invalid": "4到16位，支援字母、數字、底線和減號"
+  },
+  "password": {
+    "required": "請輸入密碼",
+    "invalid": "8-16位元必須包含字母和數字"
+  },
+  "email": {
+    "required": "請輸入信箱",
+    "invalid": "郵件信箱格式錯誤"
+  },
+  "confirmPassword": {
+    "required": "請再輸入密碼",
+    "invalid": "兩次輸入的密碼不一致"
+  },
+  "agree": {
+    "required": "請同意隱私權政策與條款"
+  },
+  "alphanumeric": {
+    "required": "請輸入字母或數字",
+    "invalid": "請只輸入字母或數字"
+  },
+  "unifiedSocialCreditCode": {
+    "required": "請輸入統一社會信用代碼",
+    "invalid": "請輸入有效的統一社會信用代碼"
+  }
+}

@@ -1,8 +1,8 @@
-import type { FallbackProps } from 'react-error-boundary';
 import { ArrowLeftOutlined, ReloadOutlined } from '@ant-design/icons';
 import { Button, Result, Space, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import type { FallbackProps } from 'react-error-boundary';
 
 export function PageError({ error, resetErrorBoundary }: FallbackProps) {
   const navigate = useNavigate();
@@ -11,10 +11,6 @@ export function PageError({ error, resetErrorBoundary }: FallbackProps) {
   function goHome() {
     resetErrorBoundary();
     navigate('/home');
-  }
-
-  function refresh() {
-    location.reload();
   }
 
   return (
@@ -47,4 +43,8 @@ export function PageError({ error, resetErrorBoundary }: FallbackProps) {
       </Typography.Paragraph>
     </Result>
   );
+}
+
+function refresh() {
+  location.reload();
 }

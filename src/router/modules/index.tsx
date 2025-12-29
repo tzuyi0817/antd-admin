@@ -1,4 +1,5 @@
 import { lazy } from 'react';
+import { Navigate } from 'react-router-dom';
 
 const NotFound = lazy(() => import('@/pages/exception/404'));
 const Login = lazy(() => import('@/pages/login'));
@@ -10,11 +11,20 @@ export const routes = [
     Component: NotFound,
   },
   {
+    path: '/',
+    element: (
+      <Navigate
+        to="/login"
+        replace
+      />
+    ),
+  },
+  {
     path: '/login',
     Component: Login,
   },
   {
-    path: '/',
+    path: '/home',
     Component: Home,
   },
 ];

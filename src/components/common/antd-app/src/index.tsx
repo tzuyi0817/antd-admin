@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
 import { App } from 'antd';
+import type { ReactNode } from 'react';
 
 export interface AntdAppProps {
   children: ReactNode;

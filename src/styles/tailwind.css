@@ -1,4 +1,8 @@
-@import 'tailwindcss';
+@layer theme, base, antd, components, utilities;
+
+@import 'tailwindcss/theme.css' layer(theme);
+
+@import 'tailwindcss/utilities.css' layer(utilities);
 
 @theme {
   --animate-logo-spin: logo-spin infinite 20s linear;

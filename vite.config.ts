@@ -33,7 +33,7 @@ export default defineConfig({
         manualChunks: {
           core: ['react', 'react-dom', 'react-i18next', 'react-router-dom', 'zustand', 'i18next'],
           antd: ['antd', '@ant-design/icons'],
-          vender: ['axios', 'react-error-boundary', 'nprogress', 'motion'],
+          vender: ['axios', 'react-error-boundary', 'nprogress', 'motion', 'clsx', 'ahooks'],
         },
       },
     },
