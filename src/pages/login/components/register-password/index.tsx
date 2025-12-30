@@ -126,7 +126,7 @@ export function RegisterPassword() {
           {t('authority.alreadyHaveAnAccount')}
           <Button
             type="link"
-            className="px-1!"
+            className="px-1"
             onPointerDown={() => {
               setFormMode('login');
             }}

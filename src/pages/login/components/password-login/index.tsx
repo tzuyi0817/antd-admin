@@ -88,7 +88,7 @@ export function PasswordLogin() {
           <div className="-mt-1 mb-5 flex justify-between text-sm">
             <Button
               type="link"
-              className="p-0!"
+              className="p-0"
               onPointerDown={() => {
                 setFormMode('forgotPassword');
               }}
@@ -110,7 +110,7 @@ export function PasswordLogin() {
           {t('authority.noAccountYet')}
           <Button
             type="link"
-            className="px-1!"
+            className="px-1"
             onPointerDown={() => {
               setFormMode('register');
             }}
