@@ -3,6 +3,8 @@ import { createBrowserRouter, type RouteObject } from 'react-router-dom';
 import { LayoutRoot } from '@/components/layout';
 import { routes } from './modules';
 
+import 'nprogress/nprogress.css';
+
 nprogress.configure({
   easing: 'ease',
   speed: 500,
@@ -28,9 +30,11 @@ const rootRoute: RouteObject[] = [
       return null;
     },
     shouldRevalidate: ({ nextUrl }) => {
-      if (!loadedPaths.has(nextUrl.pathname)) {
+      const { pathname } = nextUrl;
+
+      if (!loadedPaths.has(pathname)) {
         nprogress.start();
-        loadedPaths.add(nextUrl.pathname);
+        loadedPaths.add(pathname);
       }
 
       return false;
