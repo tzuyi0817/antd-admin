@@ -1,5 +1,6 @@
 import { App, theme } from 'antd';
 import { useEffect, type ReactNode } from 'react';
+import { ThemeProvider } from 'react-jss';
 import { setupAntdTokens } from '@/plugins/tailwind/antd';
 
 export interface AntdAppProps {
@@ -13,5 +14,9 @@ export function AntdApp({ children }: AntdAppProps) {
     setupAntdTokens(token);
   }, [token]);
 
-  return <App className="h-full">{children}</App>;
+  return (
+    <ThemeProvider theme={{ token }}>
+      <App className="h-full">{children}</App>
+    </ThemeProvider>
+  );
 }

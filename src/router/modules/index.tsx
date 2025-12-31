@@ -1,30 +1,27 @@
-import { lazy } from 'react';
-import { Navigate } from 'react-router-dom';
+import { lazy, createElement } from 'react';
+import { HomeOutlined } from '@ant-design/icons';
+import { LayoutContainer } from '@/components/layout';
+import type { AppRouteRecordRaw } from '../types';
 
-const NotFound = lazy(() => import('@/pages/exception/404'));
-const Login = lazy(() => import('@/pages/login'));
 const Home = lazy(() => import('@/pages/home'));
 
-export const routes = [
-  {
-    path: '*',
-    Component: NotFound,
-  },
-  {
-    path: '/',
-    element: (
-      <Navigate
-        to="/login"
-        replace
-      />
-    ),
-  },
-  {
-    path: '/login',
-    Component: Login,
-  },
+export const routes: AppRouteRecordRaw[] = [
   {
     path: '/home',
-    Component: Home,
+    Component: LayoutContainer,
+    handle: {
+      title: 'common.menu.home',
+      icon: createElement(HomeOutlined),
+    },
+    children: [
+      {
+        index: true,
+        Component: Home,
+        handle: {
+          title: 'common.menu.home',
+          icon: createElement(HomeOutlined),
+        },
+      },
+    ],
   },
 ];

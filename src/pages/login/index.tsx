@@ -26,7 +26,7 @@ export default function Login() {
         </div>
       </header>
 
-      <div className="flex w-full flex-1 flex-col justify-center px-6 py-10 xl:px-8">
+      <div className="flex w-full flex-1 flex-col justify-center overflow-hidden px-6 py-10 xl:px-8">
         <div className="w-full sm:mx-auto md:max-w-md">
           <FormModeProvider>
             <FormModeContent />

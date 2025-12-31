@@ -24,13 +24,16 @@
     "axios": "^1.13.2",
     "clsx": "^2.1.1",
     "i18next": "^25.6.0",
+    "keepalive-for-react": "^5.0.7",
     "motion": "^12.23.26",
     "nprogress": "^0.2.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-error-boundary": "^6.0.1",
     "react-i18next": "^16.4.1",
+    "react-jss": "^10.10.0",
     "react-router-dom": "^7.9.5",
+    "spin-delay": "^2.0.1",
     "zustand": "^5.0.8"
   },
   "devDependencies": {

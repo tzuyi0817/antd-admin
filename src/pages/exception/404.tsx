@@ -12,6 +12,8 @@ export default function Exception404() {
       status="404"
       title="404"
       subTitle={t('exception.404SubTitle')}
+      className="flex h-full flex-col items-center justify-center"
+      classNames={{ icon: 'm-0!' }}
       extra={
         <Button
           icon={<ArrowLeftOutlined />}

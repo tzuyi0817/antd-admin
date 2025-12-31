@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { setupI18n } from '@/plugins/i18n';
+import { setupLoading } from '@/plugins/loading';
 
 import { App } from './App.tsx';
 import 'virtual:svg-icons-register';
@@ -12,6 +13,7 @@ async function setupApp() {
   if (!rootElement) return;
 
   setupI18n();
+  setupLoading();
 
   const root = createRoot(rootElement);
   const isDev = import.meta.env.DEV;

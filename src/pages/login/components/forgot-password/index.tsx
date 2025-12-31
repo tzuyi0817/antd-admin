@@ -54,6 +54,7 @@ export function ForgotPassword() {
           rules={[
             {
               required: true,
+              message: t('form.email.required'),
             },
             {
               type: 'email',
@@ -82,7 +83,7 @@ export function ForgotPassword() {
           <Button
             type="link"
             icon={<LeftOutlined />}
-            className="px-1"
+            className="px-1!"
             onPointerDown={() => {
               setFormMode('login');
             }}
