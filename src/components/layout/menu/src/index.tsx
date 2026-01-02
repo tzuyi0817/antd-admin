@@ -98,10 +98,10 @@ export function LayoutMenu({
       setOpenKeys(getSelectedKeys);
     }
   }, [matches, sidebarCollapsed, getSelectedKeys]);
-  console.log({ getSelectedKeys, menus });
+
   return (
     <Menu
-      className={clsx('min-w-0 flex-auto border-none!', {
+      className={clsx('w-auto! min-w-0 border-none', {
         [classes.menuBackgroundColor]: sidebarCollapsed,
       })}
       inlineIndent={16}

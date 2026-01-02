@@ -36,12 +36,12 @@ export function LayoutSidebar({ children, computedSidebarWidth }: LayoutSidebarP
       >
         <SvgIcon
           name="react"
-          className="mr-2 h-8 w-8"
+          className="h-8 w-8"
         />
 
         <Title
           level={1}
-          className="m-0! text-sm!"
+          className={clsx('m-0! ml-2 text-sm!', { hidden: sidebarCollapsed })}
           ellipsis
         >
           Antd Admin
