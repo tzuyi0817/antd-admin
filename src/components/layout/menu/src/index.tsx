@@ -1,7 +1,7 @@
 import type { MenuProps } from 'antd';
 import type { MenuItem } from './types';
 import { useDevice } from '@/hooks/use-device';
-import { removeTrailingSlash } from '@/router';
+import { removeTrailingSlash, type AppRouteRecordRaw } from '@/router';
 import { Menu } from 'antd';
 import { useEffect, useMemo, useState } from 'react';
 import { useMatches } from 'react-router-dom';
@@ -37,16 +37,11 @@ export function LayoutMenu({
   }, [wholeMenus]);
 
   const getSelectedKeys = useMemo(() => {
-    const currentActiveMatch = matches.findLast(routeItem => routeItem.handle?.currentActiveMenu);
+    const latestVisibleMatch = matches.findLast(routeItem => {
+      const { handle } = routeItem as AppRouteRecordRaw;
 
-    if (currentActiveMatch?.handle?.currentActiveMenu) {
-      const activeMenuPath = removeTrailingSlash(currentActiveMatch.handle.currentActiveMenu);
-      const parentKeys = menuParentKeys[activeMenuPath] || [];
-
-      return [...parentKeys, activeMenuPath];
-    }
-
-    const latestVisibleMatch = matches.findLast(routeItem => routeItem.handle?.hideInMenu !== true);
+      return handle?.hideInMenu !== true;
+    });
 
     if (latestVisibleMatch?.id) {
       const routePath = removeTrailingSlash(latestVisibleMatch.id);

@@ -61,7 +61,7 @@ export function LayoutContent() {
             </KeepAlive>
           </div>
 
-          <LayoutFooter />
+          <LayoutFooter className="bg-colorBgContainer absolute bottom-0 w-full" />
         </div>
       </Spinner>
     </main>

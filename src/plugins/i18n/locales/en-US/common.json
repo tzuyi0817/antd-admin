@@ -46,7 +46,7 @@
   "view": "View",
   "edit": "Edit",
   "error": "Error",
-  "index": "Index",
+  "index": "Item",
   "upload": "Upload",
   "noData": "No data",
   "action": "Action",
@@ -91,5 +91,11 @@
   "expandAll": "Expand All",
   "collapseAll": "Collapse All",
   "checkAll": "Check All",
-  "cancelAll": "Cancel All"
+  "cancelAll": "Cancel All",
+  "itemNumber": "Item Number",
+  "productName": "Product Name",
+  "unit": "Unit",
+  "quantity": "Quantity",
+  "unitPrice": "Unit Price",
+  "totalPrice": "Total Price"
 }

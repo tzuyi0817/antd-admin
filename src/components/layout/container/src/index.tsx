@@ -66,7 +66,7 @@ export function LayoutContainer() {
       </LayoutSidebar>
 
       <LayoutContent />
-      <LayoutFooter className="bg-colorBgContainer absolute bottom-0" />
+
       <FloatButton.BackTop
         icon={<RocketOutlined />}
         target={() => (document.querySelector(`#${ELEMENT_ID_MAIN_CONTENT}`) as HTMLElement) || document}

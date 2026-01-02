@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
-import type { BreadcrumbProps } from 'antd';
+import { Breadcrumb, type BreadcrumbProps } from 'antd';
 import { isString } from '@/utils/check-type';
-import { Breadcrumb } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useMatches } from 'react-router-dom';
 import type { AppRouteRecordRaw } from '@/router/types';
