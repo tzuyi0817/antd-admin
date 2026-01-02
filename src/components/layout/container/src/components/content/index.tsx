@@ -1,15 +1,12 @@
-// import { useLayoutContentStyle } from '#src/hooks/use-layout-style';
-import { CSS_VARIABLE_LAYOUT_CONTENT_HEIGHT, ELEMENT_ID_MAIN_CONTENT } from '@/constants/layout';
-import { LayoutFooter } from '@/components/layout';
-import { Spinner } from '@/components/common';
-// import { useAccessStore } from '#src/store/access';
-// import { useTabsStore } from '#src/store/tabs';
-
 import { theme } from 'antd';
 import { KeepAlive, useKeepAliveRef } from 'keepalive-for-react';
-import { useEffect, useMemo } from 'react';
-
+import { useMemo } from 'react';
+// import { useTabsStore } from '#src/store/tabs';
 import { useLocation, useOutlet } from 'react-router-dom';
+import { Spinner } from '@/components/common';
+import { LayoutFooter } from '@/components/layout';
+// import { useLayoutContentStyle } from '#src/hooks/use-layout-style';
+import { CSS_VARIABLE_LAYOUT_CONTENT_HEIGHT, ELEMENT_ID_MAIN_CONTENT } from '@/constants/layout';
 
 export function LayoutContent() {
   const {
@@ -37,7 +34,7 @@ export function LayoutContent() {
     <main
       id={ELEMENT_ID_MAIN_CONTENT}
       // ref={contentElement}
-      className="relative grow overflow-x-hidden overflow-y-auto"
+      className="relative mb-10 grow overflow-x-hidden overflow-y-auto"
       style={{
         backgroundColor: colorBgLayout,
       }}
@@ -61,7 +58,7 @@ export function LayoutContent() {
             </KeepAlive>
           </div>
 
-          <LayoutFooter className="bg-colorBgContainer absolute bottom-0 w-full" />
+          <LayoutFooter className="bg-colorBgContainer fixed bottom-0 w-full" />
         </div>
       </Spinner>
     </main>

@@ -70,7 +70,7 @@ export function setupLoading() {
     <div id="${loadingId}"></div>
   `;
 
-  const loadingContainerElement = document.getElementById(loadingContainerId);
+  const loadingContainerElement = document.querySelector(`#${loadingContainerId}`);
 
   if (!loadingContainerElement) {
     const loadingDiv = document.createElement('div');
@@ -78,7 +78,7 @@ export function setupLoading() {
     loadingDiv.id = loadingContainerId;
     loadingDiv.innerHTML = `<!-- A loading animation displayed before code loads, driven by setupLoading function -->${loading}`;
 
-    const app = document.getElementById('root');
+    const app = document.querySelector('#root');
 
     if (app) {
       app.before(loadingDiv);

@@ -1,9 +1,9 @@
-import type { HomeItem } from './types';
-import { get } from '../../request';
+import { post } from '../../request';
 import type { ResponseList } from '../../types';
+import type { HomeItem, HomeListParams } from './types';
 
 export type * from './types';
 
-export function fetchHomeList(page: number, pageSize: number) {
-  return get<ResponseList<HomeItem[]>>(`/home?page=${page}&pageSize=${pageSize}`);
+export function fetchHomeList(params: HomeListParams) {
+  return post<ResponseList<HomeItem[]>>('/home/list', params);
 }

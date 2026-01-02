@@ -1,56 +1,43 @@
-import { useRef, useState, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+import { LoadingOutlined } from '@ant-design/icons';
 import { ProTable, type ActionType } from '@ant-design/pro-components';
-import { useQuery } from '@tanstack/react-query';
+import { useMemo, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { fetchHomeList } from '@/services/http';
 import { Columns } from './components/columns';
 
 export default function Home() {
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
   const { t } = useTranslation();
   const actionRef = useRef<ActionType>(null);
 
-  const { data, isFetching } = useQuery({
-    queryKey: ['home-list', page, pageSize],
-    queryFn: () => {
-      return fetchHomeList(page, pageSize);
-    },
-  });
-
-  const columns = useMemo(() => {
-    return Columns(t);
-  }, []);
-
-  function refreshTable() {
-    actionRef.current?.reload();
-  }
+  const columns = useMemo(() => Columns(t), [t]);
 
   return (
     <div className="box-border p-4">
       <ProTable
         cardBordered
         rowKey="id"
-        dataSource={data?.resultMap?.list}
         dateFormatter="string"
         columns={columns}
         actionRef={actionRef}
+        request={async params => {
+          const { current, pageSize, ...rest } = params;
+          const page = current ?? 1;
+          const size = pageSize ?? 10;
+          const { resultMap } = await fetchHomeList({ page, pageSize: size, ...rest });
+
+          return { ...resultMap, data: resultMap.list };
+        }}
         scroll={{ x: 'max-content' }}
-        loading={isFetching}
-        onSubmit={() => {
-          setPage(1);
+        loading={{ indicator: <LoadingOutlined spin /> }}
+        search={{
+          labelWidth: 'auto',
         }}
         pagination={{
-          position: ['bottomRight'],
-          current: page,
-          pageSize,
-          total: data?.resultMap?.total,
+          placement: ['bottomEnd'],
+          defaultCurrent: 1,
+          defaultPageSize: 10,
           showQuickJumper: true,
           showSizeChanger: true,
-          onChange: (current, size) => {
-            setPage(current);
-            setPageSize(size);
-          },
           showTotal: total => t('common.pagination', { total }),
         }}
       />

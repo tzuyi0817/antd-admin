@@ -92,10 +92,14 @@
   "collapseAll": "折疊所有",
   "checkAll": "選擇全部",
   "cancelAll": "取消所有",
-  "itemNumber": "貨號",
-  "productName": "品名",
+  "itemNumber": "貨品代號",
+  "productName": "貨品名稱",
   "unit": "單位",
   "quantity": "數量",
   "unitPrice": "單價",
-  "totalPrice": "總價"
+  "totalPrice": "總價",
+  "placeholder": {
+    "itemNumber": "請輸入貨品代號",
+    "productName": "請輸入貨品名稱"
+  }
 }

@@ -1,14 +1,12 @@
-import { useMemo } from 'react';
 import { Breadcrumb, type BreadcrumbProps } from 'antd';
-import { isString } from '@/utils/check-type';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMatches } from 'react-router-dom';
+import { isString } from '@/utils/check-type';
 import type { AppRouteRecordRaw } from '@/router/types';
 
-const itemRender: BreadcrumbProps['itemRender'] = (route, _, routes) => {
-  const last = routes.indexOf(route) === routes.length - 1;
-
-  return last || !route.path ? <span>{route.title}</span> : <span>{route.title}</span>;
+const itemRender: BreadcrumbProps['itemRender'] = route => {
+  return <span>{route.title}</span>;
 };
 
 export function BreadcrumbViews() {

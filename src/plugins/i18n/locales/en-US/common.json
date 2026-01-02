@@ -97,5 +97,9 @@
   "unit": "Unit",
   "quantity": "Quantity",
   "unitPrice": "Unit Price",
-  "totalPrice": "Total Price"
+  "totalPrice": "Total Price",
+  "placeholder": {
+    "itemNumber": "Please enter the item number",
+    "productName": "Please enter the product name"
+  }
 }

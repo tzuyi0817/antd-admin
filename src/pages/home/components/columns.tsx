@@ -1,3 +1,4 @@
+import { formatMoney } from '@/utils/common';
 // import { Tag } from 'antd';
 import type { ProColumns } from '@ant-design/pro-components';
 import type { TFunction } from 'i18next';
@@ -8,7 +9,8 @@ export function Columns(t: TFunction<'translation'>): ProColumns[] {
       dataIndex: 'index',
       title: t('common.index'),
       valueType: 'indexBorder',
-      width: 80,
+      width: 60,
+      align: 'center',
     },
     {
       title: t('common.itemNumber'),
@@ -16,21 +18,28 @@ export function Columns(t: TFunction<'translation'>): ProColumns[] {
       disable: true,
       ellipsis: true,
       width: 120,
+      align: 'center',
+      fieldProps: {
+        placeholder: t('common.placeholder.itemNumber'),
+      },
     },
     {
       disable: true,
       title: t('common.productName'),
       dataIndex: 'productName',
       width: 120,
-      filters: true,
-      onFilter: true,
       ellipsis: true,
+      align: 'center',
+      fieldProps: {
+        placeholder: t('common.placeholder.productName'),
+      },
     },
     {
       title: t('common.unit'),
       dataIndex: 'unit',
       width: 80,
       search: false,
+      align: 'center',
     },
     {
       title: t('common.quantity'),
@@ -38,20 +47,23 @@ export function Columns(t: TFunction<'translation'>): ProColumns[] {
       valueType: 'digit',
       width: 100,
       search: false,
+      align: 'center',
     },
     {
       title: t('common.unitPrice'),
       dataIndex: 'unitPrice',
-      valueType: 'money',
       width: 170,
       search: false,
+      align: 'center',
+      renderText: formatMoney,
     },
     {
       title: t('common.totalPrice'),
       dataIndex: 'totalPrice',
-      valueType: 'money',
       width: 170,
       search: false,
+      align: 'center',
+      renderText: formatMoney,
     },
     // {
     //   disable: true,

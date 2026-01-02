@@ -7,3 +7,10 @@ export interface HomeItem {
   unitPrice: number;
   totalPrice: number;
 }
+
+export interface HomeListParams {
+  page: number;
+  pageSize: number;
+  itemNumber?: string;
+  productName?: string;
+}

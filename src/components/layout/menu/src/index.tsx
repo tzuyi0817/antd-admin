@@ -1,14 +1,13 @@
-import type { MenuProps } from 'antd';
-import type { MenuItem } from './types';
-import { useDevice } from '@/hooks/use-device';
-import { removeTrailingSlash, type AppRouteRecordRaw } from '@/router';
-import { Menu } from 'antd';
+import { Menu, type MenuProps } from 'antd';
+import clsx from 'clsx';
 import { useEffect, useMemo, useState } from 'react';
 import { useMatches } from 'react-router-dom';
-import clsx from 'clsx';
+import { useDevice } from '@/hooks/use-device';
+import { removeTrailingSlash, type AppRouteRecordRaw } from '@/router';
 import { useConfigStore } from '@/stores';
 import { useStyles } from './style';
 import { getParentKeys } from './utils';
+import type { MenuItem } from './types';
 
 interface LayoutMenuProps {
   mode?: MenuProps['mode'];
@@ -37,14 +36,15 @@ export function LayoutMenu({
   }, [wholeMenus]);
 
   const getSelectedKeys = useMemo(() => {
+    console.log(matches);
     const latestVisibleMatch = matches.findLast(routeItem => {
       const { handle } = routeItem as AppRouteRecordRaw;
 
       return handle?.hideInMenu !== true;
     });
 
-    if (latestVisibleMatch?.id) {
-      const routePath = removeTrailingSlash(latestVisibleMatch.id);
+    if (latestVisibleMatch?.pathname) {
+      const routePath = removeTrailingSlash(latestVisibleMatch.pathname);
       const parentKeys = menuParentKeys[routePath] || [];
 
       return [...parentKeys, routePath];
@@ -63,18 +63,18 @@ export function LayoutMenu({
 
   const handleOpenChange: MenuProps['onOpenChange'] = keys => {
     if (sidebarCollapsed) {
-      const currentOpenKey = keys.find(key => openKeys.indexOf(key) === -1);
+      const currentOpenKey = keys.find(key => !openKeys.includes(key));
 
-      if (currentOpenKey !== undefined) {
-        const parentKeys = menuParentKeys[currentOpenKey] || [];
-
-        setOpenKeys([...parentKeys, currentOpenKey]);
-      } else {
-        const currentCloseKey = openKeys.find(key => keys.indexOf(key) === -1);
+      if (currentOpenKey === undefined) {
+        const currentCloseKey = openKeys.find(key => !keys.includes(key));
 
         if (currentCloseKey) {
           setOpenKeys(menuParentKeys[currentCloseKey]);
         }
+      } else {
+        const parentKeys = menuParentKeys[currentOpenKey] || [];
+
+        setOpenKeys([...parentKeys, currentOpenKey]);
       }
     } else {
       setOpenKeys(keys);
@@ -98,7 +98,7 @@ export function LayoutMenu({
       setOpenKeys(getSelectedKeys);
     }
   }, [matches, sidebarCollapsed, getSelectedKeys]);
-  console.log({ getSelectedKeys });
+  console.log({ getSelectedKeys, menus });
   return (
     <Menu
       className={clsx('min-w-0 flex-auto border-none!', {

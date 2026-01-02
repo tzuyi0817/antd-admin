@@ -1,5 +1,5 @@
-import { createPersistedStore } from '../middleware';
-import { routes, flattenRoutes, generateMenuItemsFromRoutes, type AppRouteRecordRaw } from '@/router';
+import { create } from 'zustand';
+import { flattenRoutes, generateMenuItemsFromRoutes, routes, type AppRouteRecordRaw } from '@/router';
 import type { MenuItem } from '@/components/layout';
 
 interface ConfigState {
@@ -14,8 +14,6 @@ interface ConfigState {
 }
 
 interface ConfigActions {
-  openSpinner: () => void;
-  closeSpinner: () => void;
   triggerSidebar: (state: boolean) => void;
 }
 
@@ -32,28 +30,12 @@ const defaultState: ConfigState = {
   sidebarCollapsed: false,
 };
 
-export const useConfigStore = createPersistedStore<ConfigState & ConfigActions>(
-  'config',
-  set => ({
-    ...defaultState,
+export const useConfigStore = create<ConfigState & ConfigActions>(set => ({
+  ...defaultState,
 
-    openSpinner: () => {
-      return set({
-        spinner: true,
-      });
-    },
-    closeSpinner: () => {
-      return set({
-        spinner: false,
-      });
-    },
-    triggerSidebar: (state: boolean) => {
-      return set({
-        sidebarCollapsed: state,
-      });
-    },
-  }),
-  {
-    partialize: () => ({}),
+  triggerSidebar: (state: boolean) => {
+    return set({
+      sidebarCollapsed: state,
+    });
   },
-);
+}));

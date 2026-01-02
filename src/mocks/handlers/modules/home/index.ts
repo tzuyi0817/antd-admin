@@ -1,16 +1,22 @@
-import { http, HttpResponse } from 'msw';
-import { MOCK_HOME_LIST } from './constants';
+import { http, HttpResponse, type PathParams } from 'msw';
 import { sleep } from '@/utils/common';
-import type { HomeItem } from '@/services/http';
+import type { HomeItem, HomeListParams } from '@/services/http';
+import { MOCK_HOME_LIST } from './constants';
 
 export const mockHome = {
-  fetchHomeList: http.get('*/home', async ({ request }) => {
-    const searchParams = new URL(request.url).searchParams;
-    const page = Number(searchParams.get('page'));
-    const pageSize = Number(searchParams.get('pageSize'));
-    const start = (page - 1) * pageSize;
-    const list: HomeItem[] = MOCK_HOME_LIST.slice(start, start + pageSize);
-    const total = MOCK_HOME_LIST.length;
+  fetchHomeList: http.post<PathParams, HomeListParams>('*/home/list', async ({ request }) => {
+    const { page, pageSize, itemNumber, productName } = await request.clone().json();
+    const filteredList: HomeItem[] = MOCK_HOME_LIST.filter(item => {
+      if (!itemNumber && !productName) return true;
+      if (!itemNumber) return item.productName === productName;
+      if (!productName) return item.itemNumber === itemNumber;
+
+      return item.itemNumber === itemNumber && item.productName === productName;
+    });
+
+    const start = (Number(page) - 1) * Number(pageSize);
+    const list = filteredList.slice(start, start + Number(pageSize));
+    const total = filteredList.length;
 
     await sleep(300);
 

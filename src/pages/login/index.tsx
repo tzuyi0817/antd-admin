@@ -1,5 +1,5 @@
 import { SvgIcon } from '@/components/common';
-import { LayoutFooter, LanguageSwitcher } from '@/components/layout';
+import { LanguageSwitcher, LayoutFooter } from '@/components/layout';
 import { FormModeContent } from './components/form-mode-content';
 import { FormModeProvider } from './providers/form-mode';
 

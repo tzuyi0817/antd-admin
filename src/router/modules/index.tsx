@@ -1,5 +1,5 @@
-import { lazy, createElement } from 'react';
 import { HomeOutlined } from '@ant-design/icons';
+import { createElement, lazy } from 'react';
 import { LayoutContainer } from '@/components/layout';
 import type { AppRouteRecordRaw } from '../types';
 

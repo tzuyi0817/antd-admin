@@ -1,5 +1,5 @@
-import { lazy } from 'react';
 import nprogress from 'nprogress';
+import { lazy } from 'react';
 import { createBrowserRouter, Navigate, type RouteObject } from 'react-router-dom';
 import { LayoutRoot } from '@/components/layout';
 import { routes } from './modules';

@@ -1,9 +1,9 @@
-import { theme as antdTheme, Typography, Button } from 'antd';
-import clsx from 'clsx';
-import { useNavigate } from 'react-router-dom';
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
-import { HEADER_HEIGHT, SIDEBAR_TRIGGER_HEIGHT } from '@/constants/layout';
+import { theme as antdTheme, Button, Typography } from 'antd';
+import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 import { SvgIcon } from '@/components/common';
+import { HEADER_HEIGHT, SIDEBAR_TRIGGER_HEIGHT } from '@/constants/layout';
 import { useConfigStore } from '@/stores';
 
 export interface LayoutSidebarProps {
@@ -14,7 +14,6 @@ export interface LayoutSidebarProps {
 const { Title } = Typography;
 
 export function LayoutSidebar({ children, computedSidebarWidth }: LayoutSidebarProps) {
-  const navigate = useNavigate();
   const sidebarCollapsed = useConfigStore(state => state.sidebarCollapsed);
   const triggerSidebar = useConfigStore(state => state.triggerSidebar);
   const {
@@ -30,10 +29,10 @@ export function LayoutSidebar({ children, computedSidebarWidth }: LayoutSidebarP
       }}
       className="border-r-colorBorderSecondary fixed top-0 bottom-0 left-0 overflow-x-hidden overflow-y-auto border-r transition-all"
     >
-      <div
+      <Link
+        to="/home"
         style={{ height: HEADER_HEIGHT }}
         className={clsx('flex cursor-pointer items-center justify-center gap-2')}
-        onClick={() => navigate('/home')}
       >
         <SvgIcon
           name="react"
@@ -47,7 +46,7 @@ export function LayoutSidebar({ children, computedSidebarWidth }: LayoutSidebarP
         >
           Antd Admin
         </Title>
-      </div>
+      </Link>
 
       <div
         className="overflow-hidden"

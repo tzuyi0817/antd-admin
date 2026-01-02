@@ -1,13 +1,13 @@
 import { RocketOutlined } from '@ant-design/icons';
 import { FloatButton, Grid } from 'antd';
 import { useEffect, useMemo } from 'react';
+import { LayoutHeader, LayoutMenu, LayoutSidebar, useMenu } from '@/components/layout';
 import { ELEMENT_ID_MAIN_CONTENT, SIDE_COLLAPSED_WIDTH, SIDEBAR_WIDTH } from '@/constants/layout';
-import { useConfigStore } from '@/stores';
 import { useDevice } from '@/hooks/use-device';
-import { LayoutContent } from './components/content';
+import { useConfigStore } from '@/stores';
 import { BreadcrumbViews } from './components/breadcrumb';
+import { LayoutContent } from './components/content';
 import { LayoutTabbar } from './components/tabbar';
-import { LayoutFooter, LayoutHeader, LayoutSidebar, LayoutMenu, useMenu } from '@/components/layout';
 
 const { useBreakpoint } = Grid;
 

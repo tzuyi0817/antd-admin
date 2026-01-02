@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { Outlet, useLocation, useMatches } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Outlet, useLocation, useMatches } from 'react-router-dom';
 import { PageError } from '@/components/common';
-import { nprogress } from '@/router';
+import { AuthGuard, nprogress, type AppRouteRecordRaw } from '@/router';
 import { isString } from '@/utils/check-type';
-import { AuthGuard, type AppRouteRecordRaw } from '@/router';
 
 export function LayoutRoot() {
   const matches = useMatches();
@@ -13,8 +12,8 @@ export function LayoutRoot() {
   const location = useLocation();
 
   useEffect(() => {
-    const currentRoute = matches[matches.length - 1];
-    const handle = currentRoute.handle as AppRouteRecordRaw['handle'];
+    const currentRoute = matches.at(-1);
+    const handle = currentRoute?.handle as AppRouteRecordRaw['handle'];
 
     if (handle) {
       const documentTitle = handle.title;

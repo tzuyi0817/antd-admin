@@ -1,14 +1,21 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
-import { Button, theme } from 'antd';
+import { Button, theme, type ButtonProps } from 'antd';
 import clsx from 'clsx';
-import { useDevice } from '@/hooks/use-device';
 import { HEADER_HEIGHT } from '@/constants/layout';
+import { useDevice } from '@/hooks/use-device';
 import { useConfigStore } from '@/stores';
+import { LanguageSwitcher } from './components/language-switcher';
+import { UserMenu } from './components/user-menu';
 
 export interface LayoutHeaderProps {
   className?: string;
   children?: React.ReactNode;
 }
+
+const buttonProps: ButtonProps = {
+  size: 'large',
+  className: 'px-[11px]! max-w-[42px]',
+};
 
 export function LayoutHeader({ className, children }: LayoutHeaderProps) {
   const {
@@ -36,6 +43,11 @@ export function LayoutHeader({ className, children }: LayoutHeaderProps) {
       ) : null}
 
       <div className="flex h-full grow items-center overflow-hidden">{children}</div>
+
+      <div className="flex items-center">
+        <LanguageSwitcher {...buttonProps} />
+        <UserMenu {...buttonProps} />
+      </div>
     </header>
   );
 }

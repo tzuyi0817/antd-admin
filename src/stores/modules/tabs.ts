@@ -1,5 +1,5 @@
-import type { TabPaneProps } from 'antd';
 import { createPersistedStore } from '../middleware';
+import type { TabPaneProps } from 'antd';
 
 export interface TabItemProps extends Omit<TabPaneProps, 'tab'> {
   key: string;
@@ -36,7 +36,7 @@ interface TabsActions {
 }
 
 const defaultState: TabsState = {
-  openTabs: new Map<string, TabState>([]),
+  openTabs: new Map<string, TabState>(),
   activeKey: '',
   isMaximize: false,
 };

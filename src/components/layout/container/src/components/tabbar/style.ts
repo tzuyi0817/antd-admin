@@ -64,6 +64,7 @@ export const useStyles: ReturnType<typeof createUseStyles> = createUseStyles(the
         },
         '& .ant-tabs-tab-active': {
           marginTop: '3px',
+          height: '32px',
           padding: '0px 12px 3px !important',
           backgroundColor: token.colorPrimaryBg,
           borderTopLeftRadius: '7px !important',

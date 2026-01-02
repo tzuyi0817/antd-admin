@@ -1,10 +1,10 @@
-import type { ReactNode } from 'react';
-import { useConfigStore } from '@/stores';
-import clsx from 'clsx';
 import { Spin } from 'antd';
-
+import clsx from 'clsx';
 import { createUseStyles } from 'react-jss';
 import { useSpinDelay } from 'spin-delay';
+
+import { useConfigStore } from '@/stores';
+import type { ReactNode } from 'react';
 
 export interface GlobalSpinProps {
   className?: string;

@@ -43,7 +43,6 @@ export default defineConfig({
             'keepalive-for-react',
             'spin-delay',
             'react-jss',
-            '@tanstack/react-query',
           ],
         },
       },

@@ -2,17 +2,13 @@ import { Button, Form, Input, message, Space } from 'antd';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { sleep } from '@/utils/common';
+import { useAuthStore } from '@/stores';
+import type { LoginParams } from '@/services/http';
 import { useFormMode } from '../../providers/form-mode';
 import { passwordRules, usernameRules } from '../../rules';
 
-interface LoginInfo {
-  username: string;
-  password: string;
-}
-
-const FORM_INITIAL_VALUES: LoginInfo = {
-  username: 'admin',
+const FORM_INITIAL_VALUES: LoginParams = {
+  account: 'admin',
   password: import.meta.env.VITE_APP_PASSWORD || '12345678',
 };
 
@@ -24,12 +20,13 @@ export function PasswordLogin() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const { setFormMode } = useFormMode();
+  const login = useAuthStore(state => state.login);
 
-  function handleFinish() {
+  function handleFinish(values: LoginParams) {
     setLoading(true);
     messageApi.loading(t('authority.loginInProgress'), 0);
 
-    sleep()
+    login(values)
       .then(() => {
         messageApi.success(t('authority.loginSuccess'));
 
@@ -70,7 +67,7 @@ export function PasswordLogin() {
       >
         <Form.Item
           label={t('authority.username')}
-          name="username"
+          name="account"
           rules={usernameRules(t)}
         >
           <Input placeholder={t('form.username.required')} />

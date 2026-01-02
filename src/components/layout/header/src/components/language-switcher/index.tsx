@@ -1,8 +1,7 @@
-import type { LanguageType } from '@/plugins/i18n';
-import type { ButtonProps } from 'antd';
-import { useTranslation } from 'react-i18next';
 import { TranslationOutlined } from '@ant-design/icons';
-import { Dropdown, Button } from 'antd';
+import { Button, Dropdown, type ButtonProps } from 'antd';
+import { useTranslation } from 'react-i18next';
+import type { LanguageType } from '@/plugins/i18n';
 import { LANGUAGE_LIST } from './constants';
 
 export function LanguageSwitcher({ ...restProps }: ButtonProps) {

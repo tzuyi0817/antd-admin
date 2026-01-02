@@ -1,12 +1,11 @@
-import type { TabsProps } from 'antd';
-import { Tabs } from 'antd';
+import { Tabs, type TabsProps } from 'antd';
 import { clsx } from 'clsx';
 import { isValidElement, useCallback, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { removeTrailingSlash, type AppRouteRecordRaw } from '@/router';
-import { useConfigStore, useTabsStore, type TabItemProps } from '@/stores';
 import { useCurrentRoute } from '@/hooks/use-current-route';
+import { removeTrailingSlash, type AppRouteRecordRaw } from '@/router';
+import { useTabsStore, type TabItemProps } from '@/stores';
 import { isString } from '@/utils/check-type';
 import { useStyles } from './style';
 
@@ -16,10 +15,9 @@ export function LayoutTabbar() {
   const location = useLocation();
   const { t } = useTranslation();
   const currentRoute = useCurrentRoute();
-  const flatRouteList = useConfigStore(state => state.flatRouteList);
   const activeKey = useTabsStore(state => state.activeKey);
   const openTabs = useTabsStore(state => state.openTabs);
-  const { setActiveKey, addTab, removeTab, insertBeforeTab } = useTabsStore();
+  const { setActiveKey, addTab, removeTab } = useTabsStore();
 
   const tabItems: TabItemProps[] = useMemo(() => {
     return Array.from(openTabs.values()).map(item => {
@@ -37,7 +35,7 @@ export function LayoutTabbar() {
       const historyState = openTabs.get(key)?.historyState || { search: '', hash: '' };
       navigate(key + historyState.search + historyState.hash);
     },
-    [openTabs],
+    [openTabs, navigate],
   );
 
   const handleEditTabs = useCallback<Required<TabsProps>['onEdit']>(
@@ -60,32 +58,17 @@ export function LayoutTabbar() {
   }, [activeKey]);
 
   useEffect(() => {
-    const isDefaultTabMissing = !Array.from(openTabs.keys()).includes('/home');
-
-    if (isDefaultTabMissing) {
-      const routeTitle = flatRouteList['/home']?.handle?.title;
-
-      insertBeforeTab('/home', {
-        key: '/home',
-        label: isValidElement(routeTitle) ? routeTitle?.props?.children : routeTitle,
-        closable: false,
-        draggable: false,
-      });
-    }
-  }, [openTabs, insertBeforeTab, flatRouteList]);
-
-  useEffect(() => {
     const activePath = location.pathname;
     const normalizedPath = removeTrailingSlash(activePath);
 
     if (normalizedPath !== activeKey) {
       setActiveKey(normalizedPath);
 
-      const { title: routeTitle } = currentRoute.handle as AppRouteRecordRaw['handle'];
+      const { title: routeTitle } = currentRoute?.handle as AppRouteRecordRaw['handle'];
 
       addTab(normalizedPath, {
         key: normalizedPath,
-        label: isValidElement(routeTitle) ? routeTitle?.props?.children : routeTitle,
+        label: isValidElement(routeTitle) ? (routeTitle?.props as { children: any })?.children : routeTitle,
         historyState: { search: location.search, hash: location.hash },
         closable: normalizedPath !== '/home',
         draggable: normalizedPath !== '/home',
