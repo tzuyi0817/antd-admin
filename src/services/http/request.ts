@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { globalMessage } from '@/providers/message';
 import type { RequestMethod } from './types';
 
 const { VITE_API_URL } = import.meta.env;
@@ -20,9 +21,9 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   response => response.data,
   error => {
-    // const { data } = error.response;
+    const { data } = error.response;
 
-    // showToast({ message: data?.message ?? error.message, type: 'error' });
+    globalMessage.error(data?.message ?? error.message);
 
     return Promise.reject(error);
   },

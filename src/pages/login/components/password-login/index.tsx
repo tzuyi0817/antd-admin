@@ -48,6 +48,9 @@ export function PasswordLogin() {
           navigate('/home');
         }
       })
+      .catch(() => {
+        message.destroy(messageKey);
+      })
       .finally(() => {
         setTimeout(() => {
           setLoading(false);
