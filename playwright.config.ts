@@ -18,7 +18,7 @@ export default defineConfig({
   },
   webServer: {
     command: 'pnpm dev:mock',
-    port: 5173,
+    port: 5500,
     reuseExistingServer: !process.env.CI,
   },
   projects: [

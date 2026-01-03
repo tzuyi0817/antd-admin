@@ -17,6 +17,8 @@ export function PageError({ error, resetErrorBoundary }: FallbackProps) {
     <Result
       status="500"
       title={error.message}
+      className="flex h-full flex-col items-center justify-center"
+      classNames={{ icon: 'm-0!' }}
       extra={
         <Space size={20}>
           <Button

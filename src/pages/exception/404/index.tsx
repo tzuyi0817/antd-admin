@@ -11,7 +11,7 @@ export default function Exception404() {
     <Result
       status="404"
       title="404"
-      subTitle={t('exception.404SubTitle')}
+      subTitle={t('common.404SubTitle')}
       className="flex h-full flex-col items-center justify-center"
       classNames={{ icon: 'm-0!' }}
       extra={
