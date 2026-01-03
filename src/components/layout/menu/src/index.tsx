@@ -36,7 +36,6 @@ export function LayoutMenu({
   }, [wholeMenus]);
 
   const getSelectedKeys = useMemo(() => {
-    console.log(matches);
     const latestVisibleMatch = matches.findLast(routeItem => {
       const { handle } = routeItem as AppRouteRecordRaw;
 

@@ -8,6 +8,7 @@ import { useConfigStore } from '@/stores';
 import { BreadcrumbViews } from './components/breadcrumb';
 import { LayoutContent } from './components/content';
 import { LayoutTabbar } from './components/tabbar';
+import { LayoutMobileMenu } from './components/mobile-menu';
 
 const { useBreakpoint } = Grid;
 
@@ -17,8 +18,6 @@ export function LayoutContainer() {
   const triggerSidebar = useConfigStore(state => state.triggerSidebar);
   const { isMobile } = useDevice();
   const { translatedMenus, handleMenuSelect } = useMenu();
-  // const { setLayoutHeaderHeight } = useLayoutHeaderStyle();
-  // const { setLayoutFooterHeight } = useLayoutFooterStyle();
 
   useEffect(() => {
     if (screens.lg && !screens.xl) {
@@ -55,7 +54,7 @@ export function LayoutContainer() {
       <LayoutTabbar />
 
       {/* Mobile Menu */}
-      {/* <LayoutMobileMenu /> */}
+      <LayoutMobileMenu />
 
       <LayoutSidebar computedSidebarWidth={computedSidebarWidth}>
         <LayoutMenu
