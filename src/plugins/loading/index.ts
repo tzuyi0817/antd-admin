@@ -1,5 +1,5 @@
-export const loadingId = 'loading-e8a3a985';
-export const loadingContainerId = 'loading-container-e8a3a985';
+export const loadingId = 'loading-e8a3a47826';
+export const loadingContainerId = 'loading-container-e8a3a47826';
 
 export function setupLoading() {
   const loading = `

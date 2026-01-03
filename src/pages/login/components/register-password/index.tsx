@@ -1,4 +1,4 @@
-import { Button, Checkbox, Form, Input, message, Space, Typography } from 'antd';
+import { Button, Checkbox, Form, Input, App, Space, Typography } from 'antd';
 import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
@@ -19,16 +19,15 @@ export function RegisterPassword() {
   const [registerForm] = Form.useForm();
   const { t } = useTranslation();
   const { setFormMode } = useFormMode();
-  const [messageApi, contextHolder] = message.useMessage();
+  const { message } = App.useApp();
 
   function handleFinish() {
-    messageApi.success('註冊成功');
+    message.success('註冊成功');
+    setFormMode('login');
   }
 
   return (
     <>
-      {contextHolder}
-
       <Space orientation="vertical">
         <Title level={3}>{t('authority.register')}</Title>
       </Space>

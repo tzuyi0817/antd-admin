@@ -1,4 +1,4 @@
-import { Button, Form, Input, message, Space } from 'antd';
+import { App, Button, Form, Input, Space } from 'antd';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -16,19 +16,29 @@ export function PasswordLogin() {
   const [loading, setLoading] = useState(false);
   const [passwordLoginForm] = Form.useForm();
   const { t } = useTranslation();
-  const [messageApi, contextHolder] = message.useMessage();
+  const { message } = App.useApp();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const { setFormMode } = useFormMode();
   const login = useAuthStore(state => state.login);
+  const messageKey = 'login';
 
   function handleFinish(values: LoginParams) {
     setLoading(true);
-    messageApi.loading(t('authority.loginInProgress'), 0);
+    message.open({
+      key: messageKey,
+      type: 'loading',
+      content: t('authority.loginInProgress'),
+    });
 
     login(values)
       .then(() => {
-        messageApi.success(t('authority.loginSuccess'));
+        message.open({
+          key: messageKey,
+          type: 'success',
+          content: t('authority.loginSuccess'),
+          duration: 2,
+        });
 
         const redirect = searchParams.get('redirect');
 
@@ -39,8 +49,6 @@ export function PasswordLogin() {
         }
       })
       .finally(() => {
-        messageApi?.destroy();
-
         setTimeout(() => {
           setLoading(false);
         }, 1000);
@@ -49,8 +57,6 @@ export function PasswordLogin() {
 
   return (
     <>
-      {contextHolder}
-
       <Space orientation="vertical">
         <h2 className="text-colorText mb-3 text-3xl leading-9 font-bold tracking-tight lg:text-4xl">
           {t('authority.welcomeBack')}

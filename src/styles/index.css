@@ -1,4 +1,5 @@
 @import './base.css';
 @import './tailwind.css';
+@import './animation.css';
 @import './keep-alive.css';
 @import './common/all.css';

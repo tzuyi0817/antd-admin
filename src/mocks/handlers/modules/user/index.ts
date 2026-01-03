@@ -1,9 +1,12 @@
 import { http, HttpResponse, type PathParams } from 'msw';
+import { sleep } from '@/utils/common';
 import type { LoginParams } from '@/services/http';
 
 export const mockUser = {
   login: http.post<PathParams, LoginParams>('*/login', async ({ request }) => {
     const { account, password } = await request.clone().json();
+
+    await sleep();
 
     return HttpResponse.json({
       message: 'login success',
@@ -24,7 +27,7 @@ export const mockUser = {
       },
     });
   }),
-  logout: http.post('*/logout', () => {
+  logout: http.post('*/logout', async () => {
     return HttpResponse.json({
       status: 'success',
       message: 'successfully logout',

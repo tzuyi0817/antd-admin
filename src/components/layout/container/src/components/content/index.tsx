@@ -1,11 +1,10 @@
 import { theme } from 'antd';
 import { KeepAlive, useKeepAliveRef } from 'keepalive-for-react';
-import { useMemo } from 'react';
-// import { useTabsStore } from '#src/store/tabs';
+import { useMemo, useEffect } from 'react';
+import { useTabsStore } from '@/stores';
 import { useLocation, useOutlet } from 'react-router-dom';
 import { Spinner } from '@/components/common';
 import { LayoutFooter } from '@/components/layout';
-// import { useLayoutContentStyle } from '#src/hooks/use-layout-style';
 import { CSS_VARIABLE_LAYOUT_CONTENT_HEIGHT, ELEMENT_ID_MAIN_CONTENT } from '@/constants/layout';
 
 export function LayoutContent() {
@@ -14,26 +13,26 @@ export function LayoutContent() {
   } = theme.useToken();
   const { pathname, search } = useLocation();
   const outlet = useOutlet();
-  // const { contentElement } = useLayoutContentStyle();
+  const openTabs = useTabsStore(state => state.openTabs);
   const aliveRef = useKeepAliveRef();
 
   const cacheKey = useMemo(() => {
     return `${pathname}${search}`;
   }, [pathname, search]);
 
-  // useEffect(() => {
-  //   const cacheNodes = aliveRef.current?.getCacheNodes?.();
-  //   cacheNodes?.forEach(node => {
-  //     if (!openTabs.has(node.cacheKey)) {
-  //       aliveRef.current?.destroy(node.cacheKey);
-  //     }
-  //   });
-  // }, [openTabs]);
+  useEffect(() => {
+    const cacheNodes = aliveRef.current?.getCacheNodes?.();
+
+    cacheNodes?.forEach(node => {
+      if (!openTabs.has(node.cacheKey)) {
+        aliveRef.current?.destroy(node.cacheKey);
+      }
+    });
+  }, [openTabs]);
 
   return (
     <main
       id={ELEMENT_ID_MAIN_CONTENT}
-      // ref={contentElement}
       className="relative mb-10 grow overflow-x-hidden overflow-y-auto"
       style={{
         backgroundColor: colorBgLayout,
