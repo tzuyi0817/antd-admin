@@ -32,7 +32,8 @@ export default defineConfig({
         entryFileNames: 'entries/[name].[hash].js',
         manualChunks: {
           core: ['react', 'react-dom', 'react-i18next', 'react-router-dom', 'zustand', 'i18next'],
-          antd: ['antd', '@ant-design/icons', '@ant-design/pro-components'],
+          antd: ['antd'],
+          'ant-design': ['@ant-design/icons', '@ant-design/pro-components'],
           vender: [
             'axios',
             'react-error-boundary',
