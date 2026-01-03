@@ -65,6 +65,19 @@ export function Columns(t: TFunction<'translation'>): ProColumns[] {
       align: 'center',
       renderText: formatMoney,
     },
+
+    {
+      title: t('common.creationDate'),
+      dataIndex: 'createdAt',
+      valueType: 'dateRange',
+      hideInTable: true,
+      search: {
+        transform: ([start, end]) => ({
+          startTime: start,
+          endTime: end,
+        }),
+      },
+    },
     // {
     //   disable: true,
     //   title: t('common.status'),

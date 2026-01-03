@@ -47,7 +47,7 @@
   "tip": "提示",
   "tipMessage": "確定執行本次操作？",
   "trigger": "觸發",
-  "更新": "更新",
+  "update": "更新",
   "updateSuccess": "更新成功",
   "userCenter": "個人中心",
   "yes": "是",
@@ -74,6 +74,7 @@
   "quantity": "數量",
   "unitPrice": "單價",
   "totalPrice": "總價",
+  "creationDate": "建立日期",
   "placeholder": {
     "itemNumber": "請輸入貨品代號",
     "productName": "請輸入貨品名稱"

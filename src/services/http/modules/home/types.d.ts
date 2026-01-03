@@ -14,3 +14,11 @@ export interface HomeListParams {
   itemNumber?: string;
   productName?: string;
 }
+
+export interface CreateHomeParams {
+  itemNumber: string;
+  productName: string;
+  unit: string;
+  quantity: number;
+  unitPrice: number;
+}
