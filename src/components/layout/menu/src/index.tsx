@@ -1,6 +1,6 @@
 import { Menu, type MenuProps } from 'antd';
 import clsx from 'clsx';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useMatches } from 'react-router-dom';
 import { useDevice } from '@/hooks/use-device';
 import { removeTrailingSlash, type AppRouteRecordRaw } from '@/router';
@@ -89,14 +89,6 @@ export function LayoutMenu({
     }
     return {};
   }, [autoExpandCurrentMenu, openKeys, handleOpenChange]);
-
-  useEffect(() => {
-    if (sidebarCollapsed) {
-      setOpenKeys([]);
-    } else {
-      setOpenKeys(getSelectedKeys);
-    }
-  }, [matches, sidebarCollapsed, getSelectedKeys]);
 
   return (
     <Menu

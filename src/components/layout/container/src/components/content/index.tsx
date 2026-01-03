@@ -1,11 +1,11 @@
 import { theme } from 'antd';
 import { KeepAlive, useKeepAliveRef } from 'keepalive-for-react';
-import { useMemo, useEffect } from 'react';
-import { useTabsStore } from '@/stores';
+import { useEffect, useMemo } from 'react';
 import { useLocation, useOutlet } from 'react-router-dom';
 import { Spinner } from '@/components/common';
 import { LayoutFooter } from '@/components/layout';
 import { CSS_VARIABLE_LAYOUT_CONTENT_HEIGHT, ELEMENT_ID_MAIN_CONTENT } from '@/constants/layout';
+import { useTabsStore } from '@/stores';
 
 export function LayoutContent() {
   const {

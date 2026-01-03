@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { globalMessage } from '@/providers/message';
+import { getMessage } from '@/providers/message';
 import type { RequestMethod } from './types';
 
 const { VITE_API_URL } = import.meta.env;
@@ -23,7 +23,7 @@ axiosInstance.interceptors.response.use(
   error => {
     const { data } = error.response;
 
-    globalMessage.error(data?.message ?? error.message);
+    getMessage().error(data?.message ?? error.message);
 
     return Promise.reject(error);
   },

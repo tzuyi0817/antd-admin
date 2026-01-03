@@ -7,8 +7,8 @@ import { useDevice } from '@/hooks/use-device';
 import { useConfigStore } from '@/stores';
 import { BreadcrumbViews } from './components/breadcrumb';
 import { LayoutContent } from './components/content';
-import { LayoutTabbar } from './components/tabbar';
 import { LayoutMobileMenu } from './components/mobile-menu';
+import { LayoutTabbar } from './components/tabbar';
 
 const { useBreakpoint } = Grid;
 

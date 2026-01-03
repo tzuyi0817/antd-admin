@@ -1,8 +1,8 @@
-import clsx from 'clsx';
 import { theme as antdTheme, Drawer } from 'antd';
-import { useConfigStore } from '@/stores';
+import clsx from 'clsx';
 import { LayoutMenu, useMenu } from '@/components/layout';
 import { useDevice } from '@/hooks/use-device';
+import { useConfigStore } from '@/stores';
 import { useStyles } from './style';
 
 export function LayoutMobileMenu() {
@@ -25,6 +25,7 @@ export function LayoutMobileMenu() {
       open={sidebarCollapsed}
       placement="left"
       size={210}
+      destroyOnHidden={false}
       className={clsx(classes.drawerStyles)}
       onClose={() => triggerSidebar(false)}
     >

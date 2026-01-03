@@ -1,11 +1,19 @@
-import { useEffect } from 'react';
 import { App } from 'antd';
+import { useEffect } from 'react';
 import type { MessageInstance } from 'antd/es/message/interface';
 
-export let globalMessage: MessageInstance;
+let _message: MessageInstance | null = null;
 
 export function setMessageApi(api: MessageInstance) {
-  globalMessage = api;
+  _message = api;
+}
+
+export function getMessage(): MessageInstance {
+  if (!_message) {
+    throw new Error('MessageInstance not initialized');
+  }
+
+  return _message;
 }
 
 export function MessageProvider() {

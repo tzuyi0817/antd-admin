@@ -8,6 +8,7 @@ import type { MenuProps } from 'antd';
 
 export function useMenu() {
   const wholeMenus = useConfigStore(state => state.wholeMenus);
+  const triggerSidebar = useConfigStore(state => state.triggerSidebar);
   const navigate = useNavigate();
   const { t } = useTranslation();
   const translatedMenus = translateMenus(wholeMenus, t);
@@ -25,6 +26,7 @@ export function useMenu() {
         window.open(key);
       } else {
         navigate(key);
+        triggerSidebar(false);
       }
     }
   }
