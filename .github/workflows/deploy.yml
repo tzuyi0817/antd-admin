@@ -7,6 +7,10 @@ on:
       - 'src/**'
       - 'pnpm-lock.yaml'
       - 'package.json'
+      - '.github/workflows/**'
+
+permissions:
+  contents: write
 
 jobs:
   CI:

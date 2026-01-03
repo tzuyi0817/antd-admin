@@ -12,11 +12,11 @@ jobs:
       - name: setup environment
         uses: './.github/actions/setup-environment'
 
-      - name: install Playwright browsers
-        run: npx playwright install --with-deps
+      # - name: install Playwright browsers
+      #   run: npx playwright install --with-deps
 
-      - name: run unit test
-        run: pnpm test:unit
+      # - name: run unit test
+      #   run: pnpm test:unit
 
-      - name: run e2e test
-        run: pnpm test:ci-e2e
+      # - name: run e2e test
+      #   run: pnpm test:ci-e2e

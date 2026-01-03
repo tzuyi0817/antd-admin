@@ -7,7 +7,7 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import './scripts/build-info';
 
 export default defineConfig({
-  base: './',
+  base: '/antd-admin/',
   plugins: [
     react(),
     tailwindcss(),
