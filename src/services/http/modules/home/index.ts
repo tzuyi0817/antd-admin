@@ -13,9 +13,9 @@ export function createHomeItem(params: CreateHomeParams) {
 }
 
 export function editHomeItem(params: HomeItem) {
-  return put<ResponseList<HomeItem[]>>('/home/edit', params);
+  return put<ResponseList<HomeItem[]>>('/home', params);
 }
 
 export function deleteHomeItem(id: number) {
-  return del<ResponseList<HomeItem[]>>(`/home/delete/${id}`);
+  return del<ResponseList<HomeItem[]>>(`/home/${id}`);
 }

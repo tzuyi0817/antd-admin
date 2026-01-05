@@ -31,7 +31,7 @@ export const mockHome = {
     const lastItem = MOCK_HOME_LIST.at(-1);
     const id = (lastItem?.id ?? 0) + 1;
 
-    MOCK_HOME_LIST.push({ ...params, id, totalPrice: params.quantity * params.unitPrice });
+    MOCK_HOME_LIST.unshift({ ...params, id, totalPrice: params.quantity * params.unitPrice });
 
     await sleep(300);
 
@@ -41,7 +41,7 @@ export const mockHome = {
       resultMap: true,
     });
   }),
-  editHomeItem: http.put<PathParams, HomeItem>('*/home/edit', async ({ request }) => {
+  editHomeItem: http.put<PathParams, HomeItem>('*/home', async ({ request }) => {
     const params = await request.clone().json();
     const index = MOCK_HOME_LIST.findIndex(item => item.itemNumber === params.itemNumber);
 
@@ -55,7 +55,7 @@ export const mockHome = {
       resultMap: true,
     });
   }),
-  deleteHomeItem: http.delete('*/home/delete/:id', async ({ params }) => {
+  deleteHomeItem: http.delete('*/home/:id', async ({ params }) => {
     const id = Number(params.id);
     const index = MOCK_HOME_LIST.findIndex(item => item.id === id);
 
