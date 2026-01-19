@@ -62,7 +62,7 @@ export default function Home() {
     ];
   }, [t]);
 
-  async function handleDelete(id: number, action?: ProCoreActionType<object>) {
+  async function handleDelete(id: number, action?: ProCoreActionType) {
     await deleteHomeItem(id);
 
     const message = getMessage();

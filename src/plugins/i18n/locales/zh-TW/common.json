@@ -1,10 +1,14 @@
 {
   "menu": {
     "home": "首頁",
+
     "exception": "異常頁面",
     "exception_403": "403",
     "exception_404": "404",
-    "exception_500": "500"
+    "exception_500": "500",
+
+    "experiment": "實驗元件",
+    "virtualList": "虛擬列表"
   },
   "403SubTitle": "抱歉，您沒有造訪該頁面的權限。",
   "404SubTitle": "抱歉，您造訪的頁面不存在。",
