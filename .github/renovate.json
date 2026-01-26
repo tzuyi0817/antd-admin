@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended", "schedule:weekly", "group:allNonMajor", ":dependencyDashboard"],
+  "extends": ["config:recommended", "schedule:weekly", "group:allNonMajor"],
   "labels": ["dependencies"],
   "rangeStrategy": "bump",
   "packageRules": [
@@ -8,5 +8,7 @@
       "depTypeList": ["peerDependencies"],
       "enabled": false
     }
-  ]
+  ],
+  "dependencyDashboard": true,
+  "dependencyDashboardApproval": true
 }
