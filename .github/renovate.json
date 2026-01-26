@@ -1,14 +1,3 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended", "schedule:weekly", "group:allNonMajor"],
-  "labels": ["dependencies"],
-  "rangeStrategy": "bump",
-  "packageRules": [
-    {
-      "depTypeList": ["peerDependencies"],
-      "enabled": false
-    }
-  ],
-  "dependencyDashboard": true,
-  "dependencyDashboardApproval": true
+  "extends": ["github>tzuyi0817/renovate-config"]
 }
